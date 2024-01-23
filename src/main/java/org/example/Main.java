@@ -15,19 +15,19 @@ public class Main {
         /**
          * Context에서 Parrot 클래스와 관련된 Bean을 가져온다.
          */
-        Parrot p = context.getBean(Parrot.class);
+//        Parrot p = context.getBean(Parrot.class);
 
         /**
-         * 객체에 대한 생성 및 설정을 하지 않았지만
-         * ProjectConfig 클래스에서 추가된 Bean이 존재하기 때문에 이름이 존재
+         * 만약, 동일한 클래스를 반환하는 @Bean이 존재한다면
+         * 해당 Bean 이름(설정하지 않았다면 메소드 이름)과 함께 파라미터로 전달해 이를 가져온다.
          */
-        System.out.println("p.getName() = " + p.getName());
+        Parrot p1 = context.getBean("parrot1" , Parrot.class);
+        Parrot p2 = context.getBean("p2" , Parrot.class);
+        Parrot p3 = context.getBean("parrot3" , Parrot.class);
 
-        /**
-         * Context에 등록한 Bean을 불러와 등록 확인
-         */
-        System.out.println(context.getBean(String.class));
-        System.out.println(context.getBean(Integer.class));
+        System.out.println("p1.getName() = " + p1.getName());
+        System.out.println("p2.getName() = " + p2.getName());
+        System.out.println("p3.getName() = " + p3.getName());
 
     }
 
