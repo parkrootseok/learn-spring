@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.function.Supplier;
 import org.example.config.ProjectConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -37,8 +38,29 @@ public class Main {
         /**
          * @Component를 통해 등록한 Bean 가져오기
          */
-        Parrot p2 = context.getBean(Parrot.class);
-        System.out.println("p2.getName() = " + p2.getName());
+//        Parrot p2 = context.getBean(Parrot.class);
+//        System.out.println("p2.getName() = " + p2.getName());
+
+        /**
+         * Programming 방식으로 Bean 등록
+         * -> 조건을 통해 Bean으로 등록할 인스턴스를 유동적으로 선택할 수 있음
+         * registerBean(Bean 이름, 추가하고 싶은 Class, 공급자의 인스턴스
+         */
+
+        // Bean에 등록할 Parrot 클래스 인스턴스 생성하고 이를 반환하는 Supplier 정의
+        Parrot x = new Parrot();
+        x.setName("루트");
+        Supplier<Parrot> parrotSupplier = () -> x;
+
+        // Bean 등록
+        // bc -> bc.setPrimary(true) 기본 Bean으로 설정 (같은 타입을 반환하는 여러 빈이 있을때 primary가 표시된 빈이 우선적으로 선택됨
+        context.registerBean("parrot1", Parrot.class, parrotSupplier, bc -> bc.setPrimary(true));
+
+        // Bean 가져오기
+        Parrot p = context.getBean(Parrot.class);
+        System.out.println("p.getName() = " + p.getName());
+
+
     }
 
 }
