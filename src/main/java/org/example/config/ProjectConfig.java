@@ -42,7 +42,7 @@ public class ProjectConfig {
 
     @Bean
     Person person(Parrot parrot) {
-        Person p = new Person(parrot);
+        Person p = new Person();
         p.setName("루트");
 
 //         Person - Parrot Bean 연결을 위해 직접 호출
@@ -52,6 +52,8 @@ public class ProjectConfig {
 
 //        // 컨텍스트에서 Parrot Bean을 찾아 주입(DI)
 //        p.setParrot(parrot);
+
+        p.setParrot(parrot);
         return p;
 
     }

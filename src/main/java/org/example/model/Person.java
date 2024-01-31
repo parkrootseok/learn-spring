@@ -19,15 +19,17 @@ public class Person {
 //    @Autowired
     private Parrot parrot;
 
+    public Person() {}
+
     /**
      * 생성자를 호출할 때 자동으로 Parrot 주입
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
      * @param parrot
      */
-    @Autowired
-    public Person(Parrot parrot) {
-        this.parrot = parrot;
-    }
+//    @Autowired
+//    public Person(Parrot parrot) {
+//        this.parrot = parrot;
+//    }
 
     public String getName() {
         return name;
@@ -41,6 +43,11 @@ public class Person {
         return parrot;
     }
 
+    /**
+     * setter를 이용하여 주입
+     * @param parrot
+     */
+    @Autowired
     public void setParrot(Parrot parrot) {
         this.parrot = parrot;
     }
