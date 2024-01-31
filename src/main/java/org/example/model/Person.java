@@ -16,7 +16,7 @@ public class Person {
      * @Autowired : Spring Context에서 값을 주입하도록 컴파일러에게 알리기 위한 어노테이션
      * -> 클래스 필드에 값을 주입하는 방법
      * */
-    @Autowired
+//    @Autowired
     private Parrot parrot;
 
     /**
@@ -24,7 +24,7 @@ public class Person {
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
      * @param parrot
      */
-//    @Autowired
+    @Autowired
     public Person(Parrot parrot) {
         this.parrot = parrot;
     }
