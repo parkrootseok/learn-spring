@@ -63,12 +63,10 @@ public class Main {
 //        System.out.println("p.getName() = " + p.getName());
         
         Person person = context.getBean(Person.class);
-        Parrot parrot = context.getBean(Parrot.class);
+//        Parrot parrot = context.getBean(Parrot.class);
 
         System.out.println("person = " + person.getName());
         System.out.println("person.getParrot() = " + person.getParrot());
-        System.out.println("parrot.getName() = " + parrot.getName());
-
 
     }
 

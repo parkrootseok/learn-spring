@@ -3,6 +3,7 @@ package org.example.config;
 import org.example.model.Parrot;
 import org.example.model.Person;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Primary;
  * -> basePackages로 설정한 패키지에서 탐색
  */
 @Configuration
-//@ComponentScan(basePackages = "org.example")
+@ComponentScan(basePackages = "org.example")
 public class ProjectConfig {
 
     /**
@@ -24,24 +25,24 @@ public class ProjectConfig {
      * @Primary : Default Bean 등록
      * -> 이름을 명시하지 않고 Bean을 찾을 때 해당 어노테이션이 선언되어 있는 인스턴스를 찾음
      */
-    @Bean
-    @Primary
-    Parrot parrot() {
-
-        // 앵무새 객체를 생성하고
-        var p = new Parrot();
-
-        // 이름을 코코로 설정한 후
-        p.setName("코코");
-
-        // 반환
-        return p;
-
-    }
+//    @Bean
+//    @Primary
+//    Parrot parrot() {
+//
+//        // 앵무새 객체를 생성하고
+//        var p = new Parrot();
+//
+//        // 이름을 코코로 설정한 후
+//        p.setName("코코");
+//
+//        // 반환
+//        return p;
+//
+//    }
 
     @Bean
     Person person(Parrot parrot) {
-        Person p = new Person();
+        Person p = new Person(parrot);
         p.setName("루트");
 
 //         Person - Parrot Bean 연결을 위해 직접 호출
@@ -49,10 +50,9 @@ public class ProjectConfig {
 //         컨텍스트에 인스턴스가 없다면 Bean을 생성한 후 참조
 //         p.setParrot(parrot());
 
-        // 컨텍스트에서 Parrot Bean을 찾아 주입(DI)
-        p.setParrot(parrot);
+//        // 컨텍스트에서 Parrot Bean을 찾아 주입(DI)
+//        p.setParrot(parrot);
         return p;
-
 
     }
 

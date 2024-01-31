@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
  * 스테레오타입 주석을 이용해 Bean 등록
  * @Component : Spring Context에 등록하고 싶은 클래스에 명시
  */
-//@Component
+@Component
 public class Parrot {
 
     private String name;
 
     public Parrot() {
+        this.name = "SSAFY";
         System.out.println("Parrot Created!");
     }
 
@@ -34,7 +35,7 @@ public class Parrot {
 
     @Override
     public String toString() {
-        return "Parrot{" +
+        return "Parrot {" +
                 "name='" + name + '\'' +
                 '}';
     }
