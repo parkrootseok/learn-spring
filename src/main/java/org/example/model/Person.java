@@ -26,10 +26,10 @@ public class Person {
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
      * @param parrot
      */
-    @Autowired
-    public Person(Parrot parrot) {
-        this.parrot = parrot;
-    }
+//    @Autowired
+//    public Person(Parrot parrot) {
+//        this.parrot = parrot;
+//    }
 
     public String getName() {
         return name;
@@ -47,7 +47,7 @@ public class Person {
      * setter를 이용하여 주입
      * @param parrot
      */
-    @Autowired
+//    @Autowired
     public void setParrot(Parrot parrot) {
         this.parrot = parrot;
     }

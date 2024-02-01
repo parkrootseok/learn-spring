@@ -13,17 +13,18 @@ import org.springframework.stereotype.Component;
 public class Parrot {
 
     private String name;
-    private final Person person;
+//    private final Person person;
 
-    @Autowired
-    public Parrot(Person person) {
+//    @Autowired
+    public Parrot() {
         this.name = "SSAFY";
-        this.person = person;
+//        this.person = person;
     }
 
     /**
      * @PostConstruct : 객체 생성 후 해당 메소드를 호출하도록 지시하기 위함
-     */    @PostConstruct
+     */
+//    @PostConstruct
 //    void init() {
 //        this.name = "ROOT";
 //    }
