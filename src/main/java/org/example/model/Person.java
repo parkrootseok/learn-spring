@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Person {
 
-    private String name;
+    private String name = "ROOT";
 
     // has-a(Person has a Parrot) 관계
     /**
@@ -19,17 +20,16 @@ public class Person {
 //    @Autowired
     private Parrot parrot;
 
-    public Person() {}
+//    public Person() {}
 
     /**
      * 생성자를 호출할 때 자동으로 Parrot 주입
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
-     * @param parrot
      */
 //    @Autowired
-//    public Person(Parrot parrot) {
-//        this.parrot = parrot;
-//    }
+    public Person(@Qualifier("parrot2") Parrot parrot) {
+        this.parrot = parrot;
+    }
 
     public String getName() {
         return name;
@@ -47,7 +47,7 @@ public class Person {
      * setter를 이용하여 주입
      * @param parrot
      */
-    @Autowired
+//    @Autowired
     public void setParrot(Parrot parrot) {
         this.parrot = parrot;
     }

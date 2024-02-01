@@ -2,6 +2,7 @@ package org.example.config;
 
 import org.example.model.Parrot;
 import org.example.model.Person;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -40,10 +41,13 @@ public class ProjectConfig {
 //
 //    }
 
-    @Bean
-    Person person(Parrot parrot) {
-        Person p = new Person();
-        p.setName("루트");
+    /**
+     * @Qualifier를 이용하여 매개변수명에 의존하지 않고 주입할 수 있음
+     */
+//    @Bean
+//    Person person(@Qualifier("parrot2") Parrot parrot) {
+//        Person p = new Person();
+//        p.setName("루트");
 
 //         Person - Parrot Bean 연결을 위해 직접 호출
 //         Parrot 객체를 다시 생성하는 것이 아니라 컨텍스트에 있다면 인스턴스를 자동으로 참조
@@ -53,42 +57,51 @@ public class ProjectConfig {
 //        // 컨텍스트에서 Parrot Bean을 찾아 주입(DI)
 //        p.setParrot(parrot);
 
-        p.setParrot(parrot);
-        return p;
+        // 변수명을 이용해 일치하는 @Bean을 찾아 주입
+//        p.setParrot(parrot);
+//        return p;
+//
+//    }
 
-    }
+//    @Bean
+//    Person person(Parrot parrot) {
+//
+//        Person p = new Person(parrot);
+//        return p;
+//
+//    }
 
     /**
      * 동일한 클래스를 반환하는 여러 Bean 추가
      * Bean 이름은 메소드 이름으로 기본 사용되고
      * 이를 변경하기 위해서 name tag를 사용할 수 있음
      */
-//    @Bean(name = "p2")
-//    Parrot parrot2() {
-//
-//        // 앵무새 객체를 생성하고
-//        var p = new Parrot();
-//
-//        // 이름을 코코로 설정한 후
-//        p.setName("미키");
-//
-//        // 반환
-//        return p;
-//
-//    }
-//
-//    @Bean
-//    Parrot parrot3() {
-//
-//        // 앵무새 객체를 생성하고
-//        var p = new Parrot();
-//
-//        // 이름을 코코로 설정한 후
-//        p.setName("리키");
-//
-//        // 반환
-//        return p;
-//
-//    }
+    @Bean
+    Parrot parrot2() {
+
+        // 앵무새 객체를 생성하고
+        var p = new Parrot();
+
+        // 이름을 코코로 설정한 후
+        p.setName("미키");
+
+        // 반환
+        return p;
+
+    }
+
+    @Bean
+    Parrot parrot3() {
+
+        // 앵무새 객체를 생성하고
+        var p = new Parrot();
+
+        // 이름을 코코로 설정한 후
+        p.setName("리키");
+
+        // 반환
+        return p;
+
+    }
 
 }

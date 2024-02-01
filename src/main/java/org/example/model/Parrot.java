@@ -1,6 +1,7 @@
 package org.example.model;
 
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
@@ -8,19 +9,22 @@ import org.springframework.stereotype.Component;
  * 스테레오타입 주석을 이용해 Bean 등록
  * @Component : Spring Context에 등록하고 싶은 클래스에 명시
  */
-@Component
+//@Component
 public class Parrot {
 
     private String name;
+//    private final Person person;
 
+//    @Autowired
     public Parrot() {
         this.name = "SSAFY";
-        System.out.println("Parrot Created!");
+//        this.person = person;
     }
 
     /**
      * @PostConstruct : 객체 생성 후 해당 메소드를 호출하도록 지시하기 위함
-     */    @PostConstruct
+     */
+//    @PostConstruct
 //    void init() {
 //        this.name = "ROOT";
 //    }
