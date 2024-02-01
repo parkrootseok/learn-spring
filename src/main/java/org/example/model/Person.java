@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Person {
 
-    private String name;
+    private String name = "ROOT";
 
     // has-a(Person has a Parrot) 관계
     /**
@@ -19,17 +19,16 @@ public class Person {
 //    @Autowired
     private Parrot parrot;
 
-    public Person() {}
+//    public Person() {}
 
     /**
      * 생성자를 호출할 때 자동으로 Parrot 주입
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
-     * @param parrot
      */
 //    @Autowired
-//    public Person(Parrot parrot) {
-//        this.parrot = parrot;
-//    }
+    public Person(Parrot parrot2) {
+        this.parrot = parrot2;
+    }
 
     public String getName() {
         return name;
