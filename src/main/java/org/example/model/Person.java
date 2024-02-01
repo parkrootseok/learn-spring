@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,8 +27,8 @@ public class Person {
      * Parrot에 대한 멤버변수는 final로 선언하여 초기화 후 변경 불가(불변성)
      */
 //    @Autowired
-    public Person(Parrot parrot2) {
-        this.parrot = parrot2;
+    public Person(@Qualifier("parrot2") Parrot parrot) {
+        this.parrot = parrot;
     }
 
     public String getName() {
