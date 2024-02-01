@@ -1,6 +1,7 @@
 package org.example.model;
 
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class Parrot {
 
     private String name;
+    private final Person person;
 
-    public Parrot() {
+    @Autowired
+    public Parrot(Person person) {
         this.name = "SSAFY";
-        System.out.println("Parrot Created!");
+        this.person = person;
     }
 
     /**
