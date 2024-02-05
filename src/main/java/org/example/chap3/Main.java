@@ -1,9 +1,7 @@
-package org.example;
+package org.example.chap3;
 
-import java.util.function.Supplier;
-import org.example.config.ProjectConfig;
-import org.example.model.Parrot;
-import org.example.model.Person;
+import org.example.chap3.config.ProjectConfig;
+import org.example.chap3.model.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

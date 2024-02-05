@@ -1,9 +1,4 @@
-package org.example.model;
-
-import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+package org.example.chap3.model;
 
 /**
  * 스테레오타입 주석을 이용해 Bean 등록
