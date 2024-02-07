@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommentService {
 
-
     private final CommentRepository commentRepository ;
     private final CommentNotificationProxy commentNotificationProxy;
 
