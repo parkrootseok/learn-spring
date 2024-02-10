@@ -12,12 +12,11 @@ public class Main {
 
         var context = new AnnotationConfigApplicationContext(ProjectConfiguration.class);
 
-        var comment = new Comment();
-        comment.setAuthor("Root");
-        comment.setText("Hello!");
+        var commentService1 = context.getBean(CommentService.class);
+        var commentService2 = context.getBean(CommentService.class);
 
-        var commentService = context.getBean(CommentService.class);
-        commentService.publishComment(comment);
+        boolean isEqual = commentService1 == commentService2;
+        System.out.println(isEqual);
 
     }
 
