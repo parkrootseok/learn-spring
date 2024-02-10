@@ -15,12 +15,4 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class ProjectConfiguration {
 
-    @Bean
-    public CommentService commentService(
-            CommentRepository commentRepository,
-            @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy
-    ) {
-        return new CommentService(commentRepository, commentNotificationProxy);
-    }
-
 }

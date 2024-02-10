@@ -18,6 +18,12 @@ public class Main {
         boolean isEqual = commentService1 == commentService2;
         System.out.println(isEqual);
 
+        var commentService = context.getBean(CommentService.class);
+        var userService = context.getBean(CommentService.class);
+
+        isEqual = commentService.getCommentRepository() == userService.getCommentRepository();
+        System.out.println(isEqual);
+
     }
 
 }

@@ -18,8 +18,14 @@ public class CommentService {
         this.commentNotificationProxy = commentNotificationProxy;
     }
 
+    public CommentRepository getCommentRepository() {
+        return commentRepository;
+    }
+
     public void publishComment(Comment comment) {
         commentRepository.storeComment(comment);
         commentNotificationProxy.sendComment(comment);
     }
+
+
 }
