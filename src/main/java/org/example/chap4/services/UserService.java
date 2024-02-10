@@ -9,6 +9,7 @@ public class UserService {
     private final CommentRepository commentRepository ;
 
     public UserService(CommentRepository commentRepository) {
+        System.out.println("UserService 생성!");
         this.commentRepository = commentRepository;
     }
 
