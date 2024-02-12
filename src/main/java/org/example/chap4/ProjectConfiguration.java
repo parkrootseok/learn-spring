@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 )
 public class ProjectConfiguration {
 
-    @Bean
-    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-    public CommentService commentService(CommentRepository commentRepository, @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy) {
-        return new CommentService(commentRepository, commentNotificationProxy);
-    }
+//    @Bean
+//    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//    public CommentService commentService(CommentRepository commentRepository, @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy) {
+//        return new CommentService(commentRepository, commentNotificationProxy);
+//    }
 
 }

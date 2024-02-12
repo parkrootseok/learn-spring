@@ -38,10 +38,21 @@ public class Main {
 //        isEqual = commentService.getCommentRepository() == userService.getCommentRepository();
 //        System.out.println(isEqual);
 
-        var cs1 = context.getBean("commentService", CommentService.class);
-        var cs2 = context.getBean("commentService", CommentService.class);
+        /**
+         * 프로토타입을 가지는 Bean을 참조하면, 두 인스턴스는 다름
+         * -> 프로로타입을 가지는 Bean은 참조할 때 마다 Spring에서 인스턴스를 생성
+         */
 
-        isEqual = cs1 == cs2;
+//        var cs1 = context.getBean("commentService", CommentService.class);
+//        var cs2 = context.getBean("commentService", CommentService.class);
+
+//        isEqual = cs1 == cs2;
+//        System.out.println(isEqual);
+
+        var s1 = context.getBean(CommentService.class);
+        var s2 = context.getBean(UserService.class);
+
+        isEqual = s1.getCommentRepository() == s2.getCommentRepository();
         System.out.println(isEqual);
 
 
