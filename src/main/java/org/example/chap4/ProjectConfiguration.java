@@ -11,16 +11,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@Configuration
 @ComponentScan(
         basePackages = {"org.example.chap4.proxies", "org.example.chap4.repositories", "org.example.chap4.services"}
 )
-@Configuration
 public class ProjectConfiguration {
 
     @Bean
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     public CommentService commentService(CommentRepository commentRepository, @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy) {
-        return commentService(commentRepository, commentNotificationProxy);
+        return new CommentService(commentRepository, commentNotificationProxy);
     }
 
 }
