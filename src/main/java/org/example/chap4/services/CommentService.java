@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Lazy
-@Service
+//@Lazy
+//@Service
 public class CommentService {
 
     private final CommentRepository commentRepository ;
