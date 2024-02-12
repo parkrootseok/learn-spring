@@ -19,7 +19,7 @@ public class ProjectConfiguration {
 
     @Bean
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-    public CommentService commentService(CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
+    public CommentService commentService(CommentRepository commentRepository, @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy) {
         return commentService(commentRepository, commentNotificationProxy);
     }
 
