@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.example.chap6.Comment;
 
 @Aspect
 public class LoggingAspect {
@@ -44,12 +45,20 @@ public class LoggingAspect {
 
         logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
 
+        joinPoint.proceed();
+
+        // 기존에 메소드에서 사용하는 파라미터를 새롭게 교체
+        Comment comment = new Comment();
+        comment.setText("Different Text");
+        Object[] newArguments = {comment};
+
         // 인터셉트 메소드 반환값 얻기
-        Object returnByMethod = joinPoint.proceed();
+        Object returnByMethod = joinPoint.proceed(newArguments);
 
         logger.info("Method executed and returned " + returnByMethod);
 
-        return returnByMethod;
+        // 인터셉터 한 메소드가 반환하는 값이 아닌 다른 값을 반환
+        return "FAILED";
 
     }
 
