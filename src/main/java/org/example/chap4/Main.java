@@ -49,11 +49,11 @@ public class Main {
 //        isEqual = cs1 == cs2;
 //        System.out.println(isEqual);
 
-        var s1 = context.getBean(CommentService.class);
-        var s2 = context.getBean(UserService.class);
-
-        isEqual = s1.getCommentRepository() == s2.getCommentRepository();
-        System.out.println(isEqual);
+//        var s1 = context.getBean(CommentService.class);
+//        var s2 = context.getBean(UserService.class);
+//
+//        isEqual = s1.getCommentRepository() == s2.getCommentRepository();
+//        System.out.println(isEqual);
 
 
     }
