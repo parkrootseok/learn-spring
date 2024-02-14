@@ -1,9 +1,12 @@
 package org.example.chap6;
 
+import java.util.logging.Logger;
 import org.example.chap6.services.CommentService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
+
+    private static Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
 
@@ -15,7 +18,9 @@ public class Main {
         comment.setText("demo comment");
         comment.setAuthor("seorin");
 
-        service.publishComment(comment);
+        String value = service.publishComment(comment);
+
+        logger.info(value);
 
     }
 

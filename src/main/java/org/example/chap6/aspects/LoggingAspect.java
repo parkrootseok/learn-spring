@@ -1,5 +1,6 @@
 package org.example.chap6.aspects;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,20 +18,39 @@ public class LoggingAspect {
      * () 안에는 실행을 가로챌 메소드에 대해 명시
      * -> (*[리턴 타입 상관없이] services[패키지 안에].*[모든 클래스에서].*[모든 메소드에 대해].(..)[파라미터 상관없이])
      */
+//    @Around("execution(* org.example.chap6.services.*.*(..))")
+//    public void log(ProceedingJoinPoint joinPoint) throws Throwable {
+//
+//        // 메소드가 실행되기 전 메시지
+//        logger.info("메소드 실행");
+//
+//        // 인터셉터 메소드 호출
+//        // 아래를 코드를 수행하지 않으면 실제 메서드는 호출되지 않음
+//        joinPoint.proceed();
+//
+//        // 인터셉터 메소드 실행 후 메시지
+//        logger.info("실행된 메소드");
+//
+//    }
+
     @Around("execution(* org.example.chap6.services.*.*(..))")
-    public void log(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        // 메소드가 실행되기 전 메시지
-        logger.info("메소드 실행");
+        // 인터셉트한 메소드 이름 얻기
+        String methodName = joinPoint.getSignature().getName();
 
-        // 인터셉터 메소드 호출
-        // 아래를 코드를 수행하지 않으면 실제 메서드는 호출되지 않음
-        joinPoint.proceed();
+        // 인터셉트한 메소드의 매개변수 얻기
+        Object[] arguments = joinPoint.getArgs();
 
-        // 인터셉터 메소드 실행 후 메시지
-        logger.info("실행된 메소드");
+        logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
+
+        // 인터셉트 메소드 반환값 얻기
+        Object returnByMethod = joinPoint.proceed();
+
+        logger.info("Method executed and returned " + returnByMethod);
+
+        return returnByMethod;
 
     }
-
 
 }
