@@ -1,14 +1,13 @@
 package org.example.chap6.aspects;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.example.chap6.Comment;
+import org.springframework.core.annotation.Order;
 
 @Aspect
+@Order(2)
 public class LoggingAspect {
 
     private Logger logger = Logger.getLogger(LoggingAspect.class.getName());
