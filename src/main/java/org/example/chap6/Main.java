@@ -18,9 +18,12 @@ public class Main {
         comment.setText("demo comment");
         comment.setAuthor("seorin");
 
-        String value = service.publishComment(comment);
+        service.publishComment(comment);
 
-        logger.info(value);
+        // 해당 메소드만 인터셉터하여 Aspect Logic 수행 후 메소드 호출
+        service.deleteComment(comment);
+
+        service.editComment(comment);
 
     }
 
