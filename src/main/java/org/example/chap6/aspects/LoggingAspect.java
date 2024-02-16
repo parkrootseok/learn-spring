@@ -95,16 +95,27 @@ public class LoggingAspect {
      * -> Object returnByMethod = joinPoint.proceed();를 수행하는 것과 동일한 역할을 수행
      * -> returning 속성에 대한 값으로 파라미터 변수명과 일치시켜야함
      */
-    @AfterReturning(
-            value = "@annotation(org.example.chap6.annotation.ToLog)",
-            returning = "returnedValue"
-    )
-    public void log(Object returnedValue) throws Throwable {
+//    @AfterReturning(
+//            value = "@annotation(org.example.chap6.annotation.ToLog)",
+//            returning = "returnedValue"
+//    )
+//    public void log(Object returnedValue) throws Throwable {
+//
+//        logger.info("Method executed and returned " + returnedValue);
+//
+//    }
 
-        logger.info("Method executed and returned " + returnedValue);
+    @Around(value = "@annotation(org.example.chap6.annotation.ToLog)")
+    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        logger.info("Logging Aspect: Calling the intercepted method");
+
+        Object returnedValue = joinPoint.proceed();
+
+        logger.info("Logging Aspect: Method executed and returned " + returnedValue);
+
+        return returnedValue;
 
     }
-
-
 
 }

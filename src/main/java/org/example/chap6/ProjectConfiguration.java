@@ -1,6 +1,7 @@
 package org.example.chap6;
 
 import org.example.chap6.aspects.LoggingAspect;
+import org.example.chap6.aspects.SecurityAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +22,13 @@ public class ProjectConfiguration {
      * @return
      */
     @Bean
-    public LoggingAspect aspect() {
+    public LoggingAspect loggingAspect() {
         return new LoggingAspect();
+    }
+
+    @Bean
+    SecurityAspect securityAspect() {
+        return new SecurityAspect();
     }
 
 }
