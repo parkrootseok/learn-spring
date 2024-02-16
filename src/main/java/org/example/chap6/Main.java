@@ -21,9 +21,9 @@ public class Main {
         service.publishComment(comment);
 
         // 해당 메소드만 인터셉터하여 Aspect Logic 수행 후 메소드 호출
-        service.deleteComment(comment);
-
-        service.editComment(comment);
+//        service.deleteComment(comment);
+//
+//        service.editComment(comment);
 
     }
 

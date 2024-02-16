@@ -1,13 +1,13 @@
 package org.example.chap6.aspects;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.example.chap6.Comment;
+import org.springframework.core.annotation.Order;
 
 @Aspect
+@Order(2)
 public class LoggingAspect {
 
     private Logger logger = Logger.getLogger(LoggingAspect.class.getName());
@@ -69,23 +69,51 @@ public class LoggingAspect {
     /**
      * 사용자 정의 어노테이션을 통해 메소드를 인터셉터
      */
-    @Around("@annotation(org.example.chap6.annotation.ToLog)")
+//    @Around("@annotation(org.example.chap6.annotation.ToLog)")
+//    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+//
+//        // 인터셉트한 메소드 이름 얻기
+//        String methodName = joinPoint.getSignature().getName();
+//
+//        // 인터셉트한 메소드의 매개변수 얻기
+//        Object[] arguments = joinPoint.getArgs();
+//
+//        logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
+//
+//        // 인터셉트 메소드 반환값 얻기
+//        Object returnByMethod = joinPoint.proceed();
+//
+//        logger.info("Method executed and returned " + returnByMethod);
+//
+//        return returnByMethod;
+//
+//    }
+
+    /**
+     * @AfterReturning : 인터셉트 메소드에서 반환된 값을 가져오기 위한 어노테이션
+     * -> Object returnByMethod = joinPoint.proceed();를 수행하는 것과 동일한 역할을 수행
+     * -> returning 속성에 대한 값으로 파라미터 변수명과 일치시켜야함
+     */
+//    @AfterReturning(
+//            value = "@annotation(org.example.chap6.annotation.ToLog)",
+//            returning = "returnedValue"
+//    )
+//    public void log(Object returnedValue) throws Throwable {
+//
+//        logger.info("Method executed and returned " + returnedValue);
+//
+//    }
+
+    @Around(value = "@annotation(org.example.chap6.annotation.ToLog)")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        // 인터셉트한 메소드 이름 얻기
-        String methodName = joinPoint.getSignature().getName();
+        logger.info("Logging Aspect: Calling the intercepted method");
 
-        // 인터셉트한 메소드의 매개변수 얻기
-        Object[] arguments = joinPoint.getArgs();
+        Object returnedValue = joinPoint.proceed();
 
-        logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
+        logger.info("Logging Aspect: Method executed and returned " + returnedValue);
 
-        // 인터셉트 메소드 반환값 얻기
-        Object returnByMethod = joinPoint.proceed();
-
-        logger.info("Method executed and returned " + returnByMethod);
-
-        return returnByMethod;
+        return returnedValue;
 
     }
 
