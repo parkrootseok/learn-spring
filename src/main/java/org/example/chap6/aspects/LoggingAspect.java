@@ -34,7 +34,42 @@ public class LoggingAspect {
 //
 //    }
 
-    @Around("execution(* org.example.chap6.services.*.*(..))")
+    /**
+     * 인터셉터한 메소드에 대한 파라미터, 반환값을 변경하여 실행
+     */
+//    @Around("execution(* org.example.chap6.services.*.*(..))")
+//    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+//
+//        // 인터셉트한 메소드 이름 얻기
+//        String methodName = joinPoint.getSignature().getName();
+//
+//        // 인터셉트한 메소드의 매개변수 얻기
+//        Object[] arguments = joinPoint.getArgs();
+//
+//        logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
+//
+//        // 파라미터 변경 전 호출
+//        joinPoint.proceed();
+//
+//        // 기존에 메소드에서 사용하는 파라미터를 새롭게 교체
+//        Comment comment = new Comment();
+//        comment.setText("Different Text");
+//        Object[] newArguments = {comment};
+//
+//        // 인터셉트 메소드 반환값 얻기
+//        Object returnByMethod = joinPoint.proceed(newArguments);
+//
+//        logger.info("Method executed and returned " + returnByMethod);
+//
+//        // 인터셉터 한 메소드가 반환하는 값이 아닌 다른 값을 반환
+//        return "FAILED";
+//
+//    }
+
+    /**
+     * 사용자 정의 어노테이션을 통해 메소드를 인터셉터
+     */
+    @Around("@annotation(org.example.chap6.annotation.ToLog)")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
         // 인터셉트한 메소드 이름 얻기
@@ -45,20 +80,12 @@ public class LoggingAspect {
 
         logger.info("Method " + methodName + " with parameters " + Arrays.asList(arguments) + " will execute");
 
-        joinPoint.proceed();
-
-        // 기존에 메소드에서 사용하는 파라미터를 새롭게 교체
-        Comment comment = new Comment();
-        comment.setText("Different Text");
-        Object[] newArguments = {comment};
-
         // 인터셉트 메소드 반환값 얻기
-        Object returnByMethod = joinPoint.proceed(newArguments);
+        Object returnByMethod = joinPoint.proceed();
 
         logger.info("Method executed and returned " + returnByMethod);
 
-        // 인터셉터 한 메소드가 반환하는 값이 아닌 다른 값을 반환
-        return "FAILED";
+        return returnByMethod;
 
     }
 
