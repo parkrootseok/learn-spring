@@ -1,1 +1,0 @@
-## ✏️  What I learned today?
