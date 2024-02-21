@@ -1,0 +1,42 @@
+package org.example.chap3.model;
+
+/**
+ * 스테레오타입 주석을 이용해 Bean 등록
+ * @Component : Spring Context에 등록하고 싶은 클래스에 명시
+ */
+//@Component
+public class Parrot {
+
+    private String name;
+//    private final Person person;
+
+//    @Autowired
+    public Parrot() {
+        this.name = "SSAFY";
+//        this.person = person;
+    }
+
+    /**
+     * @PostConstruct : 객체 생성 후 해당 메소드를 호출하도록 지시하기 위함
+     */
+//    @PostConstruct
+//    void init() {
+//        this.name = "ROOT";
+//    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Parrot {" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+}
