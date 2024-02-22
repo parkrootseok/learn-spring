@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.springstarthere.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,6 @@ public class MainController {
 
     /**
      * @RequestMapping("uri") : http 요청과 메소드를 연결
-     *
      */
     @RequestMapping("/home")
     public String home() {
