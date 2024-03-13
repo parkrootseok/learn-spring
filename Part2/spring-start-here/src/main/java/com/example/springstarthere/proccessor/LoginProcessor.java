@@ -6,6 +6,7 @@ import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
+import com.example.springstarthere.service.LoginCountService;
 import com.example.springstarthere.service.LoginUserManagementService;
 
 /**
@@ -17,24 +18,29 @@ import com.example.springstarthere.service.LoginUserManagementService;
 public class LoginProcessor {
 
 	private final LoginUserManagementService loginUserManagementService;
+	private final LoginCountService loginCountService;
+
 	private String id;
 	private String password;
 
-	public LoginProcessor(LoginUserManagementService loginUserManagementService) {
+	public LoginProcessor(LoginUserManagementService loginUserManagementService, LoginCountService loginCountService) {
 		this.loginUserManagementService = loginUserManagementService;
+		this.loginCountService = loginCountService;
 	}
 
 	@PostConstruct
 	public void init() {
-		System.out.println("Init LoginProcessor: " + this);
+		System.out.println("-----------Init LoginProcessor-----------");
 	}
 
 	@PreDestroy
 	public void close() {
-		System.out.println("Close LoginProcessor: " + this);
+		System.out.println("-----------Close LoginProcessor-----------");
 	}
 
 	public boolean login() {
+
+		loginCountService.increment();
 
 		String id = this.getId();
 		String password = this.getPassword();

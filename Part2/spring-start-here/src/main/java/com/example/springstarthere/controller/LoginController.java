@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springstarthere.SpringStartHereApplication;
 import com.example.springstarthere.proccessor.LoginProcessor;
+import com.example.springstarthere.service.LoginCountService;
 import com.example.springstarthere.service.LoginUserManagementService;
 
 @Controller
 public class LoginController {
 
 	private final LoginUserManagementService loginUserManagementService;
+	private final LoginCountService loginCountService;
 	private final LoginProcessor loginProcessor;
 
-	public LoginController(LoginUserManagementService loginUserManagementService, LoginProcessor loginProcessor) {
+	public LoginController(LoginUserManagementService loginUserManagementService, LoginCountService loginCountService,
+		LoginProcessor loginProcessor) {
 		this.loginUserManagementService = loginUserManagementService;
+		this.loginCountService = loginCountService;
 		this.loginProcessor = loginProcessor;
 	}
 
@@ -87,6 +91,7 @@ public class LoginController {
 		 */
 		System.out.println("현재 로그인 중인 정보 조회");
 		String curLoginID = loginUserManagementService.getId();
+		int count = loginCountService.getCount();
 		System.out.println("현재 로그인 중인 ID: " + curLoginID);
 
 		/**
@@ -104,6 +109,8 @@ public class LoginController {
 		 */
 		System.out.println("로그인 정보가 있으면 main으로 유도");
 		model.addAttribute("id", curLoginID);
+		model.addAttribute("count", count);
+
 		return "main";
 
 	}

@@ -17,12 +17,12 @@ public class LoginUserManagementService {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("Init LoginUserManagementService= " + this);
+		System.out.println("-----------Init LoginUserManagementService-----------");
 	}
 
 	@PreDestroy
 	public void close() {
-		System.out.println("Close LoginUserManagementService= " + this);
+		System.out.println("-----------Close LoginUserManagementService-----------");
 	}
 
 	public String getId() {
