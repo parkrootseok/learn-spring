@@ -12,7 +12,6 @@ import com.example.springstarthere.model.Country;
 @RestController
 public class CountryController {
 
-
 	@GetMapping("/all")
 	public List<Country> countries() {
 
@@ -22,7 +21,6 @@ public class CountryController {
 		return List.of(c1, c2);
 
 	}
-
 
 	@GetMapping("/france")
 	public ResponseEntity<Country> france() {
@@ -36,6 +34,5 @@ public class CountryController {
 			.body(c);
 
 	}
-
 
 }

@@ -22,22 +22,13 @@ public class PaymentController {
 	}
 
 	@PostMapping("/payment")
-	public ResponseEntity<?> makePayment() {
+	public ResponseEntity<?> makePayment() throws NotEnoughMoneyException {
 
-		try {
-			PaymentDetails paymentDetails = paymentService.processPayment();
+		PaymentDetails paymentDetails = paymentService.processPayment();
 
-			return ResponseEntity
-				.status(HttpStatus.ACCEPTED)
-				.body(paymentDetails);
-
-		} catch (NotEnoughMoneyException e) {
-			ErrorDetails errorDetails = new ErrorDetails();
-			errorDetails.setMessage("Not Enough Money");
-			return ResponseEntity
-				.status(HttpStatus.BAD_REQUEST)
-				.body(errorDetails);
-		}
+		return ResponseEntity
+			.status(HttpStatus.ACCEPTED)
+			.body(paymentDetails);
 
 	}
 
