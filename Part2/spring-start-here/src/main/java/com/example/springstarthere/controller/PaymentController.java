@@ -1,37 +1,35 @@
 package com.example.springstarthere.controller;
 
-import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springstarthere.model.PaymentDetails;
-import com.example.springstarthere.service.PaymentService;
+import com.example.springstarthere.model.Payment;
+import com.example.springstarthere.proxy.PaymentProxy;
 
 @RestController
 public class PaymentController {
 
 	private static Logger logger = Logger.getLogger(PaymentController.class.getName());
-	private final PaymentService paymentService;
+	private final PaymentProxy paymentProxy;
 
-	public PaymentController(PaymentService paymentService) {
-		this.paymentService = paymentService;
+	public PaymentController(PaymentProxy paymentProxy) {
+		this.paymentProxy = paymentProxy;
 	}
 
 	@PostMapping("/payment")
-	public ResponseEntity<?> makePayment(
-		@RequestBody PaymentDetails paymentDetails
-	) {
+	public Payment createPayment(@RequestBody Payment payment) {
 
-		logger.info("결제 완료 " + paymentDetails.getAmount());
+		String requestId = UUID.randomUUID().toString();
+		logger.info("Received request with ID " + requestId + " ;Payment Amount: " + payment.getAmount());
 
-		return ResponseEntity
-			.status(HttpStatus.ACCEPTED)
-			.body(paymentDetails);
+		/**
+		 * paymentProxy를 이용하여 현재 서버의 엔드 포인트로 들어온 요청을 다른 서버의 엔드 포인트를 호출하여 이동
+		 */
+		return paymentProxy.createPayment(requestId, payment);
 
 	}
 
