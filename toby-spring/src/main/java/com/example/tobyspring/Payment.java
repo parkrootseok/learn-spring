@@ -34,4 +34,16 @@ public class Payment {
         this.validUtil = validUtil;
     }
 
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "orderId=" + orderId +
+                ", currency='" + currency + '\'' +
+                ", foreignCurrencyAmount=" + foreignCurrencyAmount +
+                ", exRate=" + exRate +
+                ", convertedAmount=" + convertedAmount +
+                ", validUtil=" + validUtil +
+                '}';
+    }
+
 }
