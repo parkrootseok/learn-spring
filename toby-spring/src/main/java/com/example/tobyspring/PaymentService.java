@@ -8,8 +8,8 @@ public class PaymentService {
 
     private final ExchangeRateProvider exchangeRateProvider;
 
-    public PaymentService() {
-        this.exchangeRateProvider = new WebApiExchangeRateProvider();
+    public PaymentService(ExchangeRateProvider exchangeRateProvider) {
+        this.exchangeRateProvider = exchangeRateProvider;
     }
 
     public Payment prepare(
