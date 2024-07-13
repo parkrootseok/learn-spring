@@ -1,5 +1,6 @@
 package com.example.tobyspring;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,13 +12,17 @@ import java.util.stream.Collectors;
 
 public class PaymentService {
 
+    /**
+     * 1. api 요청을 통해 얻어온 response를 ObjectMapper를 통해 ExchangeRateVO 객체에 저장
+     * 2. 저장된 Data에서 환율을 가져온 후 계산
+     * 3. 유효 시간을 설정
+     */
     public Payment prepare(
             Long orderId, String currency, BigDecimal foreignCurrencyAmount
     ) throws IOException {
 
-        /**
-         *  todo: 환율 가져오기 (https://open.er-api.com/v6/latest/USD)
-         */
+
+        // 1
         URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -25,12 +30,16 @@ public class PaymentService {
         String response = br.lines().collect(Collectors.joining());
         br.close();
 
-        System.out.println(response);
+        // 2
+        ObjectMapper mapper = new ObjectMapper();
+        ExchangeRateVO exchangeRateVO = mapper.readValue(response, ExchangeRateVO.class);
+        BigDecimal exchangeRate = exchangeRateVO.rates().get("KRW");
+        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exchangeRate);
 
-        // todo: 금액 계산
-        // todo: 유효 시간 계산
+        // 3
+        LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
 
-        return new Payment(orderId, currency, foreignCurrencyAmount, BigDecimal.ZERO, BigDecimal.ZERO, LocalDateTime.now());
+        return new Payment(orderId, currency, foreignCurrencyAmount, exchangeRate, convertedAmount, validUntil);
     }
 
     public static void main(String[] args) throws IOException {
