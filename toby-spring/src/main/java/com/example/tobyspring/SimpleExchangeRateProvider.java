@@ -3,10 +3,8 @@ package com.example.tobyspring;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class SimpleExchangeRatePaymentService extends PaymentService {
+public class SimpleExchangeRateProvider {
 
-
-    @Override
     BigDecimal getExchangeRate(String currency) throws IOException {
 
         if (currency.equals("USD")) {
