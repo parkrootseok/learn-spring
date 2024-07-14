@@ -1,4 +1,4 @@
-package com.example.tobyspring;
+package com.example.tobyspring.exchangerate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;

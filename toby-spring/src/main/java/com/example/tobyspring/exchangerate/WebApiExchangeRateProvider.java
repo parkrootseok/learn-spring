@@ -1,5 +1,6 @@
-package com.example.tobyspring;
+package com.example.tobyspring.exchangerate;
 
+import com.example.tobyspring.payment.ExchangeRateProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +22,9 @@ public class WebApiExchangeRateProvider implements ExchangeRateProvider {
 
         ObjectMapper mapper = new ObjectMapper();
         ExchangeRateVO exchangeRateVO = mapper.readValue(response, ExchangeRateVO.class);
+
+        System.out.println("API Exchange Rate" + exchangeRateVO.rates().get("KRW"));
+
         return exchangeRateVO.rates().get("KRW");
     }
 
