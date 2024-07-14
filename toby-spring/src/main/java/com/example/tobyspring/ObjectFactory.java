@@ -1,5 +1,10 @@
 package com.example.tobyspring;
 
+import com.example.tobyspring.exchangerate.CachedExchangeRateProvider;
+import com.example.tobyspring.exchangerate.ExchangeRateProvider;
+import com.example.tobyspring.exchangerate.SimpleExchangeRateProvider;
+import com.example.tobyspring.exchangerate.WebApiExchangeRateProvider;
+import com.example.tobyspring.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

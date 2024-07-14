@@ -1,5 +1,7 @@
 package com.example.tobyspring;
 
+import com.example.tobyspring.payment.Payment;
+import com.example.tobyspring.payment.PaymentService;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.BeanFactory;

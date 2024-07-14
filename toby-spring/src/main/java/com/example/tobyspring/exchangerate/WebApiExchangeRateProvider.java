@@ -1,4 +1,4 @@
-package com.example.tobyspring;
+package com.example.tobyspring.exchangerate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;

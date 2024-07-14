@@ -1,4 +1,4 @@
-package com.example.tobyspring;
+package com.example.tobyspring.exchangerate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
