@@ -8,9 +8,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
 
-@Component
 public class WebApiExchangeRateProvider implements ExchangeRateProvider {
 
     @Override
@@ -23,6 +21,9 @@ public class WebApiExchangeRateProvider implements ExchangeRateProvider {
 
         ObjectMapper mapper = new ObjectMapper();
         ExchangeRateVO exchangeRateVO = mapper.readValue(response, ExchangeRateVO.class);
+
+        System.out.println("API Exchange Rate" + exchangeRateVO.rates().get("KRW"));
+
         return exchangeRateVO.rates().get("KRW");
     }
 
