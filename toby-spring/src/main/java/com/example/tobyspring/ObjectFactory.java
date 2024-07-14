@@ -17,6 +17,11 @@ public class ObjectFactory {
     }
 
     @Bean
+    public ExchangeRateProvider cachedExchangeRateProvider() {
+        return new CachedExchangeRateProvider(webApiExchangeRateProvider());
+    }
+
+    @Bean
     public ExchangeRateProvider webApiExchangeRateProvider() {
         return new WebApiExchangeRateProvider();
     }
@@ -24,11 +29,6 @@ public class ObjectFactory {
     @Bean
     public ExchangeRateProvider simpleExchangeRateProvider() {
         return new SimpleExchangeRateProvider();
-    }
-
-    @Bean
-    public ExchangeRateProvider cachedExchangeRateProvider() {
-        return new CachedExchangeRateProvider(webApiExchangeRateProvider());
     }
 
 }
