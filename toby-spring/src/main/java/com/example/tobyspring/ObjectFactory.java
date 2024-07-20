@@ -13,7 +13,7 @@ public class ObjectFactory {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(cachedExchangeRateProvider());
+        return new PaymentService(webApiExchangeRateProvider());
     }
 
     @Bean
