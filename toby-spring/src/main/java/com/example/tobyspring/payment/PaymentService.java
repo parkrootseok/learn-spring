@@ -2,14 +2,17 @@ package com.example.tobyspring.payment;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 public class PaymentService {
 
     private final ExchangeRateProvider exchangeRateProvider;
+    private final Clock clock;
 
-    public PaymentService(ExchangeRateProvider exchangeRateProvider) {
+    public PaymentService(ExchangeRateProvider exchangeRateProvider, Clock clock) {
         this.exchangeRateProvider = exchangeRateProvider;
+        this.clock = clock;
     }
 
     public Payment prepare(
@@ -18,7 +21,7 @@ public class PaymentService {
 
         BigDecimal exchangeRate = exchangeRateProvider.getExchangeRate(currency);
         BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exchangeRate);
-        LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
+        LocalDateTime validUntil = LocalDateTime.now(clock).plusMinutes(30);
 
         return new Payment(orderId, currency, foreignCurrencyAmount, exchangeRate, convertedAmount, validUntil);
 
