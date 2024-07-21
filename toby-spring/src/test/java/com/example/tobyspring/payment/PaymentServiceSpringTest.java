@@ -29,12 +29,12 @@ class PaymentServiceSpringTest {
     void convertedAmount() throws IOException {
 
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
-        Assertions.assertThat(payment.getExhangeRate()).isEqualByComparingTo(BigDecimal.valueOf(1_000));
+        Assertions.assertThat(payment.getExchangeRate()).isEqualByComparingTo(BigDecimal.valueOf(1_000));
         Assertions.assertThat(payment.getConvertedAmount()).isEqualByComparingTo(BigDecimal.valueOf(10_000));
 
         exchangeRateProviderStub.setExchangeRate(BigDecimal.valueOf(500));
         payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
-        Assertions.assertThat(payment.getExhangeRate()).isEqualByComparingTo(BigDecimal.valueOf(500));
+        Assertions.assertThat(payment.getExchangeRate()).isEqualByComparingTo(BigDecimal.valueOf(500));
         Assertions.assertThat(payment.getConvertedAmount()).isEqualByComparingTo(BigDecimal.valueOf(5_000));
 
     }

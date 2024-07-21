@@ -34,7 +34,7 @@ class PaymentServiceTest {
 
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
-        Assertions.assertThat(payment.getExhangeRate()).isEqualByComparingTo(exchangeRate);
+        Assertions.assertThat(payment.getExchangeRate()).isEqualByComparingTo(exchangeRate);
         Assertions.assertThat(payment.getConvertedAmount()).isEqualByComparingTo((convertedAmount));
 
     }
