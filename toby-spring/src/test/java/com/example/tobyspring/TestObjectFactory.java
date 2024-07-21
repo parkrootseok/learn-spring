@@ -1,5 +1,8 @@
-package com.example.tobyspring.payment;
+package com.example.tobyspring;
 
+import com.example.tobyspring.payment.ExchangeRateProvider;
+import com.example.tobyspring.payment.ExchangeRateProviderStub;
+import com.example.tobyspring.payment.PaymentService;
 import java.math.BigDecimal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
